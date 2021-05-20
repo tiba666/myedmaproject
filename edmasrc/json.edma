@@ -1,0 +1,11 @@
+ValueDomain JsonString : String[0..MAX]
+ValueDomain JsonNumber : Double[0..MAX]
+ValueDomain JsonInteger : Integer[0..MAX]
+ValueDomain JsonBoolean : Boolean
+ValueDomain JsonNull : Integer[0..0]
+ValueDomain JsonObject : OneOf<Array,JsonString,JsonNumber,JsonBoolean,JsonNull>
+ValueDomain Array : List<JsonObject>
+ValueDomain Course : Struct{id:JsonInteger, name:JsonString, ects: JsonNumber}
+ValueDomain CourseList : List<Course>
+ValueDomain Student : Struct{name:JsonString, lastname:JsonString, age:JsonInteger}
+ValueDomain Person : Struct {student:Student, courselsit:CourseList, active:JsonBoolean}
