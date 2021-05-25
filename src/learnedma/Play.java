@@ -2,10 +2,7 @@ package learnedma;
 
 import learnedma.generated.learnedma;
 
-import learnedma.generated.valuedomains.Course;
-import learnedma.generated.valuedomains.CourseList;
-import learnedma.generated.valuedomains.Person;
-import learnedma.generated.valuedomains.Student;
+import learnedma.generated.valuedomains.*;
 import org.abstractica.edma.runtime.implementations.common.collectionfactory.java.JavaCollectionFactory;
 import org.abstractica.edma.runtime.implementations.mem.RuntimeFactory;
 import org.abstractica.edma.valuedomains.userinput.SimpleTerminal;
@@ -16,22 +13,86 @@ public class Play {
 
     public static void main(String[] args) throws IOException {
 
-        var student = Student.create().name("nico").lastname("pedersen").age(15);
-        var course = Course.create().id(1).name("klatrekursus").ects(0.0);
-        var courselist = CourseList.begin().add(course).end();
-        var person = Person.create().student(student).courselsit(courselist).active(true);
+        var o = JsonObject.create(
+                JsonObjectLiteral.begin()
+                        .add(Member.create()
+                                .name("Student")
+                                .value(JsonObject
+                                        .create(JsonString.create("John"))))
+                        .add(Member.create().name("courses").value(JsonObject.create(Array.begin().add(JsonObject.create(Course.create().id(1).name("horse riding").etcs(12))).add(JsonObject.create(Course.create().id(2).name("chess").etcs(13))).end())))
+                        .end());
 
-        System.out.println(person);
-
-        System.out.println(toStringOpbject(person));
-
-
-
+        System.out.println(getString(o));
 
 
     }
-    private static String toStringOpbject(Person person) {
-        return "{\"student\": { \"name\": " + person.student().name() + ", \"age\":" + person.student().age() + "}," +
-                "\"courses\": [{\"id\":" + person.courselsit().get(0).id() + ", \"name\":" + person.courselsit().get(0).name() + ", \"ects\":" + person.courselsit().get(0).ects() + "}]" + "}";
+
+    public static String getString(JsonObject o) {
+        if (o.isArray()) return getString(o.asArray());
+        if (o.isJsonNull()) return "null";
+        if (o.isArray()) return getString(o.asArray());
+        if (o.isJsonNumber()) return o.asJsonNumber().value().toString();
+        if (o.isJsonString()) return getString(o.asJsonString());
+        if (o.isJsonObjectLiteral()) return getString(o.asJsonObjectLiteral());
+        if(o.isCourse()) return getString(o.asCourse());
+        return "";
+
+
+    }
+    private static String getString(Course asCourse) {
+        var sb = new StringBuffer();
+        sb.append("{");
+        sb.append("\"id\" :" + asCourse.id());
+        sb.append(",");
+        sb.append("\"name\" :" + asCourse.name());
+        sb.append(",");
+        sb.append("\"etc\" :" + asCourse.etcs());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    private static String getString(JsonObjectLiteral asJsonObjectLiteral) {
+        var sb = new StringBuffer();
+        sb.append("{");
+        boolean first = true;
+        for (Member m : asJsonObjectLiteral) {
+            if (!first) {
+                sb.append(",");
+            } else {
+                first = false;
+            }
+            sb.append(getString(m));
+        }
+        sb.append("}");
+        return sb.toString();
+    }
+
+    private static String getString(Member m) {
+        var sb = new StringBuffer();
+        sb.append(m.name());
+        sb.append(":");
+        sb.append(getString(m.value()));
+        return sb.toString();
+    }
+
+    private static String getString(Array asArray) {
+        var sb = new StringBuffer();
+        sb.append("[");
+        boolean first = true;
+        for (JsonObject e : asArray) {
+            if (!first) {
+                sb.append(",");
+            } else {
+                first = false;
+            }
+            sb.append(getString(e));
+
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
+    private static String getString(JsonString s) {
+        return "\"" + s.value() + "\"";
     }
 }

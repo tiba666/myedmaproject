@@ -1,22 +1,20 @@
 package learnedma.generated.valuedomains.impl;
 
 import learnedma.generated.valuedomains.Course;
-import learnedma.generated.valuedomains.Course.CourseBuilderEcts;
+import learnedma.generated.valuedomains.Course.CourseBuilderEtcs;
 import learnedma.generated.valuedomains.Course.CourseBuilderId;
 import learnedma.generated.valuedomains.Course.CourseBuilderName;
-import learnedma.generated.valuedomains.JsonInteger;
-import learnedma.generated.valuedomains.JsonNumber;
-import learnedma.generated.valuedomains.JsonString;
-import learnedma.generated.valuedomains.impl.JsonIntegerImpl;
-import learnedma.generated.valuedomains.impl.JsonNumberImpl;
-import learnedma.generated.valuedomains.impl.JsonStringImpl;
+import learnedma.generated.valuedomains.Name;
+import learnedma.generated.valuedomains.Number;
+import learnedma.generated.valuedomains.impl.NameImpl;
+import learnedma.generated.valuedomains.impl.NumberImpl;
 import org.abstractica.edma.valuedomains.IValueInstance;
 import org.abstractica.edma.valuedomains.exceptions.InvalidValueException;
 
 /**
  * 
  */
-public class CourseBuilderImpl implements CourseBuilderEcts, CourseBuilderId, CourseBuilderName
+public class CourseBuilderImpl implements CourseBuilderEtcs, CourseBuilderId, CourseBuilderName
 {
     private Object[] edma_value;
 
@@ -35,7 +33,7 @@ public class CourseBuilderImpl implements CourseBuilderEcts, CourseBuilderId, Co
      * @param id  The value to assign to the id field
      * @return    Builder interface for setting the name field
      */
-    public CourseBuilderName id(JsonInteger id)
+    public CourseBuilderName id(Number id)
     {
         if(id == null) throw new NullPointerException("The field id in the Course ValueDomain may not be null");
         edma_value[0] = ((IValueInstance) id).edma_getValue();
@@ -49,18 +47,18 @@ public class CourseBuilderImpl implements CourseBuilderEcts, CourseBuilderId, Co
      */
     public CourseBuilderName id(Integer id) throws InvalidValueException
     {
-        if(id != null) JsonIntegerImpl.edma_validate(id);
+        if(id != null) NumberImpl.edma_validate(id);
         if(id == null) throw new NullPointerException("The field id in the Course ValueDomain may not be null");
-        edma_value[0] = JsonIntegerImpl.edma_create(id);
+        edma_value[0] = NumberImpl.edma_create(id);
         return this;
     }
 
     /**
      * sets the name field.
      * @param name  The value to assign to the name field
-     * @return      Builder interface for setting the ects field
+     * @return      Builder interface for setting the etcs field
      */
-    public CourseBuilderEcts name(JsonString name)
+    public CourseBuilderEtcs name(Name name)
     {
         if(name == null) throw new NullPointerException("The field name in the Course ValueDomain may not be null");
         edma_value[1] = ((IValueInstance) name).edma_getValue();
@@ -70,38 +68,38 @@ public class CourseBuilderImpl implements CourseBuilderEcts, CourseBuilderId, Co
     /**
      * sets the name field.
      * @param name  The value to assign to the name field
-     * @return      Builder interface for setting the ects field
+     * @return      Builder interface for setting the etcs field
      */
-    public CourseBuilderEcts name(String name) throws InvalidValueException
+    public CourseBuilderEtcs name(String name) throws InvalidValueException
     {
-        if(name != null) JsonStringImpl.edma_validate(name);
+        if(name != null) NameImpl.edma_validate(name);
         if(name == null) throw new NullPointerException("The field name in the Course ValueDomain may not be null");
-        edma_value[1] = JsonStringImpl.edma_create(name);
+        edma_value[1] = NameImpl.edma_create(name);
         return this;
     }
 
     /**
-     * sets the ects field.
-     * @param ects  The value to assign to the ects field
+     * sets the etcs field.
+     * @param etcs  The value to assign to the etcs field
      * @return      The created Course value
      */
-    public Course ects(JsonNumber ects)
+    public Course etcs(Number etcs)
     {
-        if(ects == null) throw new NullPointerException("The field ects in the Course ValueDomain may not be null");
-        edma_value[2] = ((IValueInstance) ects).edma_getValue();
+        if(etcs == null) throw new NullPointerException("The field etcs in the Course ValueDomain may not be null");
+        edma_value[2] = ((IValueInstance) etcs).edma_getValue();
         return new CourseImpl(CourseImpl.edma_create(edma_value));
     }
 
     /**
-     * sets the ects field.
-     * @param ects  The value to assign to the ects field
+     * sets the etcs field.
+     * @param etcs  The value to assign to the etcs field
      * @return      The created Course value
      */
-    public Course ects(Double ects) throws InvalidValueException
+    public Course etcs(Integer etcs) throws InvalidValueException
     {
-        if(ects != null) JsonNumberImpl.edma_validate(ects);
-        if(ects == null) throw new NullPointerException("The field ects in the Course ValueDomain may not be null");
-        edma_value[2] = JsonNumberImpl.edma_create(ects);
+        if(etcs != null) NumberImpl.edma_validate(etcs);
+        if(etcs == null) throw new NullPointerException("The field etcs in the Course ValueDomain may not be null");
+        edma_value[2] = NumberImpl.edma_create(etcs);
         return new CourseImpl(CourseImpl.edma_create(edma_value));
     }
 }

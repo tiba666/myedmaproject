@@ -2,20 +2,19 @@ package learnedma.generated.valuedomains.impl;
 
 import java.io.DataOutput;
 import java.io.IOException;
-import learnedma.generated.valuedomains.Course;
-import learnedma.generated.valuedomains.Name;
-import learnedma.generated.valuedomains.Number;
+import java.lang.UnsupportedOperationException;
+import java.util.Iterator;
+import learnedma.generated.valuedomains.JsonObjectLiteral;
+import learnedma.generated.valuedomains.Member;
 import learnedma.generated.valuedomains.external.EDMA_ExternalConstraints;
-import learnedma.generated.valuedomains.impl.NameImpl;
-import learnedma.generated.valuedomains.impl.NumberImpl;
 import org.abstractica.edma.valuedomains.IMetaValueDomain;
 import org.abstractica.edma.valuedomains.IValueInstance;
 import org.abstractica.edma.valuedomains.exceptions.InvalidValueException;
 
 /**
- * The implementation of Course
+ * The implementation of JsonObjectLiteral
  */
-public class CourseImpl extends Course implements IValueInstance
+public class JsonObjectLiteralImpl extends JsonObjectLiteral implements IValueInstance
 {
     private int edma_hash;
     private Object[] value;
@@ -43,9 +42,9 @@ public class CourseImpl extends Course implements IValueInstance
 
     /**
      * Constructor
-     * @param o  The Object that represents this struct value
+     * @param o  The Object that represents this list value
      */
-    public CourseImpl(Object o)
+    public JsonObjectLiteralImpl(Object o)
     {
         edma_hash = 0;
         value = (Object[]) o;
@@ -78,7 +77,7 @@ public class CourseImpl extends Course implements IValueInstance
     {
         if(!(o instanceof IValueInstance)) return false;
         IValueInstance inst = (IValueInstance) o;
-        if(11 != inst.edma_getDomain().getIndex()) return false;
+        if(7 != inst.edma_getDomain().getIndex()) return false;
         return edma_domain.valueEqual(value, inst.edma_getValue());
     }
 
@@ -102,15 +101,16 @@ public class CourseImpl extends Course implements IValueInstance
     }
 
     /**
-     * Compare this Course to another Course
-     * @param course  The Course to compare with
-     * @return        A negative integer, zero, or a positive integer as this
-     *                Course is less than, equal to, or greater than the
-     *                specified Course
+     * Compare this JsonObjectLiteral to another JsonObjectLiteral
+     * @param jsonObjectLiteral  The JsonObjectLiteral to compare with
+     * @return                   A negative integer, zero, or a positive
+     *                           integer as this JsonObjectLiteral is less than,
+     *                           equal to, or greater than the specified
+     *                           JsonObjectLiteral
      */
-    public int compareTo(Course course)
+    public int compareTo(JsonObjectLiteral jsonObjectLiteral)
     {
-        return edma_domain.valueCompare(value, ((CourseImpl) course).value);
+        return edma_domain.valueCompare(value, ((JsonObjectLiteralImpl) jsonObjectLiteral).value);
     }
 
     /**
@@ -123,29 +123,76 @@ public class CourseImpl extends Course implements IValueInstance
     }
 
     /**
-     * returns the value of the field id
-     * @return  The value of the field id
+     * Returns an iterator for this list
+     * @return  an iterator for this list
      */
-    public Number id()
+    public Iterator<Member> iterator()
     {
-        return new NumberImpl(value[0]);
+        return new JsonObjectLiteralIterator();
     }
 
     /**
-     * returns the value of the field name
-     * @return  The value of the field name
+     * Returns the size of this list
+     * @return  the size of this list
      */
-    public Name name()
+    public int size()
     {
-        return new NameImpl(value[1]);
+        return value.length;
     }
 
     /**
-     * returns the value of the field etcs
-     * @return  The value of the field etcs
+     * Returns the element on a given index in this list
+     * @param index  The index of the element to be returned
+     * @return       the element on the given index in this list
      */
-    public Number etcs()
+    public Member get(int index)
     {
-        return new NumberImpl(value[2]);
+        return new MemberImpl(value[index]);
     }
+
+
+    /**
+     * 
+     */
+    public class JsonObjectLiteralIterator implements Iterator<Member>
+    {
+        private int pos;
+
+
+
+        /**
+         * Constructor
+         */
+        public JsonObjectLiteralIterator()
+        {
+            pos = 0;
+        }
+
+        /**
+         * Returns true if there are more elements in this iterator
+         * @return  true if there are more elements in this iterator
+         */
+        public boolean hasNext()
+        {
+            return pos < value.length;
+        }
+
+        /**
+         * returns the next element from this iterator
+         * @return  the next element in this iterator
+         */
+        public Member next()
+        {
+            return new MemberImpl(value[pos++]);
+        }
+
+        /**
+         * This operation is not supported, because the list is immutable
+         */
+        public void remove()
+        {
+            throw new UnsupportedOperationException();
+        }
+    }
+
 }

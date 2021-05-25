@@ -2,23 +2,18 @@ package learnedma.generated.valuedomains.impl;
 
 import java.io.DataOutput;
 import java.io.IOException;
-import learnedma.generated.valuedomains.Course;
-import learnedma.generated.valuedomains.Name;
 import learnedma.generated.valuedomains.Number;
 import learnedma.generated.valuedomains.external.EDMA_ExternalConstraints;
-import learnedma.generated.valuedomains.impl.NameImpl;
-import learnedma.generated.valuedomains.impl.NumberImpl;
 import org.abstractica.edma.valuedomains.IMetaValueDomain;
 import org.abstractica.edma.valuedomains.IValueInstance;
 import org.abstractica.edma.valuedomains.exceptions.InvalidValueException;
 
 /**
- * The implementation of Course
+ * The implementation of Number
  */
-public class CourseImpl extends Course implements IValueInstance
+public class NumberImpl extends Number implements IValueInstance
 {
-    private int edma_hash;
-    private Object[] value;
+    private Object value;
 
 
 
@@ -43,12 +38,11 @@ public class CourseImpl extends Course implements IValueInstance
 
     /**
      * Constructor
-     * @param o  The Object that represents this struct value
+     * @param value  The internal value
      */
-    public CourseImpl(Object o)
+    public NumberImpl(Object value)
     {
-        edma_hash = 0;
-        value = (Object[]) o;
+        this.value = value;
     }
 
     /**
@@ -78,7 +72,7 @@ public class CourseImpl extends Course implements IValueInstance
     {
         if(!(o instanceof IValueInstance)) return false;
         IValueInstance inst = (IValueInstance) o;
-        if(11 != inst.edma_getDomain().getIndex()) return false;
+        if(9 != inst.edma_getDomain().getIndex()) return false;
         return edma_domain.valueEqual(value, inst.edma_getValue());
     }
 
@@ -88,8 +82,7 @@ public class CourseImpl extends Course implements IValueInstance
      */
     public int hashCode()
     {
-        if(edma_hash == 0) edma_hash = edma_domain.valueHashCode(value);
-        return edma_hash;
+        return value.hashCode();
     }
 
     /**
@@ -102,15 +95,15 @@ public class CourseImpl extends Course implements IValueInstance
     }
 
     /**
-     * Compare this Course to another Course
-     * @param course  The Course to compare with
+     * Compare this Number to another Number
+     * @param number  The Number to compare with
      * @return        A negative integer, zero, or a positive integer as this
-     *                Course is less than, equal to, or greater than the
-     *                specified Course
+     *                Number is less than, equal to, or greater than the
+     *                specified Number
      */
-    public int compareTo(Course course)
+    public int compareTo(Number number)
     {
-        return edma_domain.valueCompare(value, ((CourseImpl) course).value);
+        return edma_domain.valueCompare(value, ((NumberImpl) number).value);
     }
 
     /**
@@ -123,29 +116,11 @@ public class CourseImpl extends Course implements IValueInstance
     }
 
     /**
-     * returns the value of the field id
-     * @return  The value of the field id
+     * returns the Integer value that is stored in this Number
+     * @return  The Integer value stored in this Number
      */
-    public Number id()
+    public Integer value()
     {
-        return new NumberImpl(value[0]);
-    }
-
-    /**
-     * returns the value of the field name
-     * @return  The value of the field name
-     */
-    public Name name()
-    {
-        return new NameImpl(value[1]);
-    }
-
-    /**
-     * returns the value of the field etcs
-     * @return  The value of the field etcs
-     */
-    public Number etcs()
-    {
-        return new NumberImpl(value[2]);
+        return (Integer) value;
     }
 }

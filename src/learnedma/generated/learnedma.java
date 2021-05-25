@@ -60,12 +60,14 @@ public class learnedma
         //OneOf value domain: JsonObject
         {
             ArrayList<Constraint> edma_constraints = null;
-            Collection<String> optionDomains = new ArrayList<String>(5);
+            Collection<String> optionDomains = new ArrayList<String>(7);
+            optionDomains.add("JsonObjectLiteral");
             optionDomains.add("Array");
             optionDomains.add("JsonString");
             optionDomains.add("JsonNumber");
             optionDomains.add("JsonBoolean");
             optionDomains.add("JsonNull");
+            optionDomains.add("Course");
             vdb.newOneOfDomain("JsonObject", null, optionDomains, edma_constraints, false);
         }
         
@@ -75,40 +77,41 @@ public class learnedma
             vdb.newListDomain("Array", null, "JsonObject", null, null, edma_constraints, false);
         }
         
+        //List value domain: JsonObjectLiteral
+        {
+            ArrayList<Constraint> edma_constraints = null;
+            vdb.newListDomain("JsonObjectLiteral", null, "Member", null, null, edma_constraints, false);
+        }
+        
+        //String value domain: Name
+        {
+            ArrayList<Constraint> edma_constraints = null;
+            vdb.newStringDomain("Name", null, 0, null, null, edma_constraints, false);
+        }
+        
+        //Integer value domain: Number
+        {
+            ArrayList<Constraint> edma_constraints = null;
+            vdb.newIntegerDomain("Number", null, 0, null, edma_constraints, false);
+        }
+        
+        //Struct value domain: Member
+        {
+            ArrayList<Constraint> edma_constraints = null;
+            Collection<Field> fields = new ArrayList<Field>();
+            fields.add(vdb.newStructField("name", "Name", false));
+            fields.add(vdb.newStructField("value", "JsonObject", false));
+            vdb.newStructDomain("Member", null, fields, edma_constraints, false);
+        }
+        
         //Struct value domain: Course
         {
             ArrayList<Constraint> edma_constraints = null;
             Collection<Field> fields = new ArrayList<Field>();
-            fields.add(vdb.newStructField("id", "JsonInteger", false));
-            fields.add(vdb.newStructField("name", "JsonString", false));
-            fields.add(vdb.newStructField("ects", "JsonNumber", false));
+            fields.add(vdb.newStructField("id", "Number", false));
+            fields.add(vdb.newStructField("name", "Name", false));
+            fields.add(vdb.newStructField("etcs", "Number", false));
             vdb.newStructDomain("Course", null, fields, edma_constraints, false);
-        }
-        
-        //List value domain: CourseList
-        {
-            ArrayList<Constraint> edma_constraints = null;
-            vdb.newListDomain("CourseList", null, "Course", null, null, edma_constraints, false);
-        }
-        
-        //Struct value domain: Student
-        {
-            ArrayList<Constraint> edma_constraints = null;
-            Collection<Field> fields = new ArrayList<Field>();
-            fields.add(vdb.newStructField("name", "JsonString", false));
-            fields.add(vdb.newStructField("lastname", "JsonString", false));
-            fields.add(vdb.newStructField("age", "JsonInteger", false));
-            vdb.newStructDomain("Student", null, fields, edma_constraints, false);
-        }
-        
-        //Struct value domain: Person
-        {
-            ArrayList<Constraint> edma_constraints = null;
-            Collection<Field> fields = new ArrayList<Field>();
-            fields.add(vdb.newStructField("student", "Student", false));
-            fields.add(vdb.newStructField("courselsit", "CourseList", false));
-            fields.add(vdb.newStructField("active", "JsonBoolean", false));
-            vdb.newStructDomain("Person", null, fields, edma_constraints, false);
         }
         MetaEnvironment edma_environment = new MetaEnvironment("learnedma");
         vdb.buildWithEnvironment(edma_environment);

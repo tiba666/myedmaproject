@@ -4,9 +4,8 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import learnedma.generated.learnedma;
-import learnedma.generated.valuedomains.JsonInteger;
-import learnedma.generated.valuedomains.JsonNumber;
-import learnedma.generated.valuedomains.JsonString;
+import learnedma.generated.valuedomains.Name;
+import learnedma.generated.valuedomains.Number;
 import learnedma.generated.valuedomains.external.EDMA_ExternalConstraints;
 import learnedma.generated.valuedomains.impl.CourseBuilderImpl;
 import learnedma.generated.valuedomains.impl.CourseImpl;
@@ -20,7 +19,7 @@ import org.abstractica.edma.valuedomains.userinput.ValueDomainInput;
  */
 public abstract class Course implements Comparable<Course>
 {
-    protected static final IMetaValueDomain edma_domain = learnedma.environment.getValueDomainDefinitions().getValueDomain(7);
+    protected static final IMetaValueDomain edma_domain = learnedma.environment.getValueDomainDefinitions().getValueDomain(11);
 
 
 
@@ -89,19 +88,19 @@ public abstract class Course implements Comparable<Course>
      * returns the value of the field id
      * @return  The value of the field id
      */
-    public abstract JsonInteger id();
+    public abstract Number id();
 
     /**
      * returns the value of the field name
      * @return  The value of the field name
      */
-    public abstract JsonString name();
+    public abstract Name name();
 
     /**
-     * returns the value of the field ects
-     * @return  The value of the field ects
+     * returns the value of the field etcs
+     * @return  The value of the field etcs
      */
-    public abstract JsonNumber ects();
+    public abstract Number etcs();
 
 
     /**
@@ -115,7 +114,7 @@ public abstract class Course implements Comparable<Course>
          * @param id  The value to assign to the id field
          * @return    Builder interface for setting the name field
          */
-        public CourseBuilderName id(JsonInteger id);
+        public CourseBuilderName id(Number id);
 
         /**
          * sets the id field.
@@ -137,40 +136,40 @@ public abstract class Course implements Comparable<Course>
         /**
          * sets the name field.
          * @param name  The value to assign to the name field
-         * @return      Builder interface for setting the ects field
+         * @return      Builder interface for setting the etcs field
          */
-        public CourseBuilderEcts name(JsonString name);
+        public CourseBuilderEtcs name(Name name);
 
         /**
          * sets the name field.
          * @param name  The value to assign to the name field
-         * @return      Builder interface for setting the ects field
+         * @return      Builder interface for setting the etcs field
          */
-        public CourseBuilderEcts name(String name) throws InvalidValueException;
+        public CourseBuilderEtcs name(String name) throws InvalidValueException;
 
     }
 
 
 
     /**
-     * Builder interface for setting the ects field of Course
+     * Builder interface for setting the etcs field of Course
      */
-    public interface CourseBuilderEcts
+    public interface CourseBuilderEtcs
     {
 
         /**
-         * sets the ects field.
-         * @param ects  The value to assign to the ects field
+         * sets the etcs field.
+         * @param etcs  The value to assign to the etcs field
          * @return      The created Course value
          */
-        public Course ects(JsonNumber ects);
+        public Course etcs(Number etcs);
 
         /**
-         * sets the ects field.
-         * @param ects  The value to assign to the ects field
+         * sets the etcs field.
+         * @param etcs  The value to assign to the etcs field
          * @return      The created Course value
          */
-        public Course ects(Double ects) throws InvalidValueException;
+        public Course etcs(Integer etcs) throws InvalidValueException;
 
     }
 

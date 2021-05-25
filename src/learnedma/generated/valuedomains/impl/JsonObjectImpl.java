@@ -3,16 +3,20 @@ package learnedma.generated.valuedomains.impl;
 import java.io.DataOutput;
 import java.io.IOException;
 import learnedma.generated.valuedomains.Array;
+import learnedma.generated.valuedomains.Course;
 import learnedma.generated.valuedomains.JsonBoolean;
 import learnedma.generated.valuedomains.JsonNull;
 import learnedma.generated.valuedomains.JsonNumber;
 import learnedma.generated.valuedomains.JsonObject;
+import learnedma.generated.valuedomains.JsonObjectLiteral;
 import learnedma.generated.valuedomains.JsonString;
 import learnedma.generated.valuedomains.external.EDMA_ExternalConstraints;
 import learnedma.generated.valuedomains.impl.ArrayImpl;
+import learnedma.generated.valuedomains.impl.CourseImpl;
 import learnedma.generated.valuedomains.impl.JsonBooleanImpl;
 import learnedma.generated.valuedomains.impl.JsonNullImpl;
 import learnedma.generated.valuedomains.impl.JsonNumberImpl;
+import learnedma.generated.valuedomains.impl.JsonObjectLiteralImpl;
 import learnedma.generated.valuedomains.impl.JsonStringImpl;
 import org.abstractica.edma.valuedomains.IMetaValueDomain;
 import org.abstractica.edma.valuedomains.IValueInstance;
@@ -130,6 +134,18 @@ public class JsonObjectImpl extends JsonObject implements IValueInstance
 
     /**
      * Returns <tt>true</tt> if this value is a value from the value domain
+     * JsonObjectLiteral
+     * @return  <tt>true</tt> if this value is a value from the value domain
+     *          JsonObjectLiteral
+     */
+    public boolean isJsonObjectLiteral()
+    {
+        Integer index = (Integer) value[0];
+        return (index.intValue() == 0);
+    }
+
+    /**
+     * Returns <tt>true</tt> if this value is a value from the value domain
      * Array
      * @return  <tt>true</tt> if this value is a value from the value domain
      *          Array
@@ -137,7 +153,7 @@ public class JsonObjectImpl extends JsonObject implements IValueInstance
     public boolean isArray()
     {
         Integer index = (Integer) value[0];
-        return (index.intValue() == 0);
+        return (index.intValue() == 1);
     }
 
     /**
@@ -149,7 +165,7 @@ public class JsonObjectImpl extends JsonObject implements IValueInstance
     public boolean isJsonString()
     {
         Integer index = (Integer) value[0];
-        return (index.intValue() == 1);
+        return (index.intValue() == 2);
     }
 
     /**
@@ -161,7 +177,7 @@ public class JsonObjectImpl extends JsonObject implements IValueInstance
     public boolean isJsonNumber()
     {
         Integer index = (Integer) value[0];
-        return (index.intValue() == 2);
+        return (index.intValue() == 3);
     }
 
     /**
@@ -173,7 +189,7 @@ public class JsonObjectImpl extends JsonObject implements IValueInstance
     public boolean isJsonBoolean()
     {
         Integer index = (Integer) value[0];
-        return (index.intValue() == 3);
+        return (index.intValue() == 4);
     }
 
     /**
@@ -185,7 +201,32 @@ public class JsonObjectImpl extends JsonObject implements IValueInstance
     public boolean isJsonNull()
     {
         Integer index = (Integer) value[0];
-        return (index.intValue() == 4);
+        return (index.intValue() == 5);
+    }
+
+    /**
+     * Returns <tt>true</tt> if this value is a value from the value domain
+     * Course
+     * @return  <tt>true</tt> if this value is a value from the value domain
+     *          Course
+     */
+    public boolean isCourse()
+    {
+        Integer index = (Integer) value[0];
+        return (index.intValue() == 6);
+    }
+
+    /**
+     * Returns this value as a value from the value domain JsonObjectLiteral or
+     * throws an UnsupportedOperationException if this value is not from the
+     * value domain JsonObjectLiteral
+     * @return  This value as a value from the value domain JsonObjectLiteral
+     */
+    public JsonObjectLiteral asJsonObjectLiteral()
+    {
+        Integer index = (Integer) value[0];
+        if(index.intValue() != 0) throw new UnsupportedOperationException();
+        return new JsonObjectLiteralImpl(value[1]);
     }
 
     /**
@@ -197,7 +238,7 @@ public class JsonObjectImpl extends JsonObject implements IValueInstance
     public Array asArray()
     {
         Integer index = (Integer) value[0];
-        if(index.intValue() != 0) throw new UnsupportedOperationException();
+        if(index.intValue() != 1) throw new UnsupportedOperationException();
         return new ArrayImpl(value[1]);
     }
 
@@ -210,7 +251,7 @@ public class JsonObjectImpl extends JsonObject implements IValueInstance
     public JsonString asJsonString()
     {
         Integer index = (Integer) value[0];
-        if(index.intValue() != 1) throw new UnsupportedOperationException();
+        if(index.intValue() != 2) throw new UnsupportedOperationException();
         return new JsonStringImpl(value[1]);
     }
 
@@ -223,7 +264,7 @@ public class JsonObjectImpl extends JsonObject implements IValueInstance
     public JsonNumber asJsonNumber()
     {
         Integer index = (Integer) value[0];
-        if(index.intValue() != 2) throw new UnsupportedOperationException();
+        if(index.intValue() != 3) throw new UnsupportedOperationException();
         return new JsonNumberImpl(value[1]);
     }
 
@@ -236,7 +277,7 @@ public class JsonObjectImpl extends JsonObject implements IValueInstance
     public JsonBoolean asJsonBoolean()
     {
         Integer index = (Integer) value[0];
-        if(index.intValue() != 3) throw new UnsupportedOperationException();
+        if(index.intValue() != 4) throw new UnsupportedOperationException();
         return new JsonBooleanImpl(value[1]);
     }
 
@@ -249,7 +290,20 @@ public class JsonObjectImpl extends JsonObject implements IValueInstance
     public JsonNull asJsonNull()
     {
         Integer index = (Integer) value[0];
-        if(index.intValue() != 4) throw new UnsupportedOperationException();
+        if(index.intValue() != 5) throw new UnsupportedOperationException();
         return new JsonNullImpl(value[1]);
+    }
+
+    /**
+     * Returns this value as a value from the value domain Course or throws an
+     * UnsupportedOperationException if this value is not from the value domain
+     * Course
+     * @return  This value as a value from the value domain Course
+     */
+    public Course asCourse()
+    {
+        Integer index = (Integer) value[0];
+        if(index.intValue() != 6) throw new UnsupportedOperationException();
+        return new CourseImpl(value[1]);
     }
 }

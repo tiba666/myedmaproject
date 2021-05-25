@@ -5,9 +5,11 @@ import java.io.DataOutput;
 import java.io.IOException;
 import learnedma.generated.learnedma;
 import learnedma.generated.valuedomains.Array;
+import learnedma.generated.valuedomains.Course;
 import learnedma.generated.valuedomains.JsonBoolean;
 import learnedma.generated.valuedomains.JsonNull;
 import learnedma.generated.valuedomains.JsonNumber;
+import learnedma.generated.valuedomains.JsonObjectLiteral;
 import learnedma.generated.valuedomains.JsonString;
 import learnedma.generated.valuedomains.external.EDMA_ExternalConstraints;
 import learnedma.generated.valuedomains.impl.JsonObjectImpl;
@@ -71,6 +73,20 @@ public abstract class JsonObject implements Comparable<JsonObject>
     }
 
     /**
+     * Creates a new JsonObject with the internal value domain JsonObjectLiteral
+     * @param jsonObjectLiteral  The internal value that this JsonObject will
+     *                           get
+     * @return                   The created value
+     */
+    public static JsonObject create(JsonObjectLiteral jsonObjectLiteral)
+    {
+        Object[] edma_pair = new Object[2];
+        edma_pair[0] = 0;
+        edma_pair[1] = ((IValueInstance) jsonObjectLiteral).edma_getValue();
+        return new JsonObjectImpl(edma_pair);
+    }
+
+    /**
      * Creates a new JsonObject with the internal value domain Array
      * @param array  The internal value that this JsonObject will get
      * @return       The created value
@@ -78,7 +94,7 @@ public abstract class JsonObject implements Comparable<JsonObject>
     public static JsonObject create(Array array)
     {
         Object[] edma_pair = new Object[2];
-        edma_pair[0] = 0;
+        edma_pair[0] = 1;
         edma_pair[1] = ((IValueInstance) array).edma_getValue();
         return new JsonObjectImpl(edma_pair);
     }
@@ -91,7 +107,7 @@ public abstract class JsonObject implements Comparable<JsonObject>
     public static JsonObject create(JsonString jsonString)
     {
         Object[] edma_pair = new Object[2];
-        edma_pair[0] = 1;
+        edma_pair[0] = 2;
         edma_pair[1] = ((IValueInstance) jsonString).edma_getValue();
         return new JsonObjectImpl(edma_pair);
     }
@@ -104,7 +120,7 @@ public abstract class JsonObject implements Comparable<JsonObject>
     public static JsonObject create(JsonNumber jsonNumber)
     {
         Object[] edma_pair = new Object[2];
-        edma_pair[0] = 2;
+        edma_pair[0] = 3;
         edma_pair[1] = ((IValueInstance) jsonNumber).edma_getValue();
         return new JsonObjectImpl(edma_pair);
     }
@@ -117,7 +133,7 @@ public abstract class JsonObject implements Comparable<JsonObject>
     public static JsonObject create(JsonBoolean jsonBoolean)
     {
         Object[] edma_pair = new Object[2];
-        edma_pair[0] = 3;
+        edma_pair[0] = 4;
         edma_pair[1] = ((IValueInstance) jsonBoolean).edma_getValue();
         return new JsonObjectImpl(edma_pair);
     }
@@ -130,8 +146,21 @@ public abstract class JsonObject implements Comparable<JsonObject>
     public static JsonObject create(JsonNull jsonNull)
     {
         Object[] edma_pair = new Object[2];
-        edma_pair[0] = 4;
+        edma_pair[0] = 5;
         edma_pair[1] = ((IValueInstance) jsonNull).edma_getValue();
+        return new JsonObjectImpl(edma_pair);
+    }
+
+    /**
+     * Creates a new JsonObject with the internal value domain Course
+     * @param course  The internal value that this JsonObject will get
+     * @return        The created value
+     */
+    public static JsonObject create(Course course)
+    {
+        Object[] edma_pair = new Object[2];
+        edma_pair[0] = 6;
+        edma_pair[1] = ((IValueInstance) course).edma_getValue();
         return new JsonObjectImpl(edma_pair);
     }
 
@@ -142,6 +171,14 @@ public abstract class JsonObject implements Comparable<JsonObject>
      * @param out  Interface to data output stream
      */
     public abstract void toStream(DataOutput out) throws IOException;
+
+    /**
+     * Returns <tt>true</tt> if this value is a value from the value domain
+     * JsonObjectLiteral
+     * @return  <tt>true</tt> if this value is a value from the value domain
+     *          JsonObjectLiteral
+     */
+    public abstract boolean isJsonObjectLiteral();
 
     /**
      * Returns <tt>true</tt> if this value is a value from the value domain
@@ -184,6 +221,22 @@ public abstract class JsonObject implements Comparable<JsonObject>
     public abstract boolean isJsonNull();
 
     /**
+     * Returns <tt>true</tt> if this value is a value from the value domain
+     * Course
+     * @return  <tt>true</tt> if this value is a value from the value domain
+     *          Course
+     */
+    public abstract boolean isCourse();
+
+    /**
+     * Returns this value as a value from the value domain JsonObjectLiteral or
+     * throws an UnsupportedOperationException if this value is not from the
+     * value domain JsonObjectLiteral
+     * @return  This value as a value from the value domain JsonObjectLiteral
+     */
+    public abstract JsonObjectLiteral asJsonObjectLiteral();
+
+    /**
      * Returns this value as a value from the value domain Array or throws an
      * UnsupportedOperationException if this value is not from the value domain
      * Array
@@ -222,4 +275,12 @@ public abstract class JsonObject implements Comparable<JsonObject>
      * @return  This value as a value from the value domain JsonNull
      */
     public abstract JsonNull asJsonNull();
+
+    /**
+     * Returns this value as a value from the value domain Course or throws an
+     * UnsupportedOperationException if this value is not from the value domain
+     * Course
+     * @return  This value as a value from the value domain Course
+     */
+    public abstract Course asCourse();
 }

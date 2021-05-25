@@ -2,20 +2,20 @@ package learnedma.generated.valuedomains.impl;
 
 import java.io.DataOutput;
 import java.io.IOException;
-import learnedma.generated.valuedomains.Course;
+import learnedma.generated.valuedomains.JsonObject;
+import learnedma.generated.valuedomains.Member;
 import learnedma.generated.valuedomains.Name;
-import learnedma.generated.valuedomains.Number;
 import learnedma.generated.valuedomains.external.EDMA_ExternalConstraints;
+import learnedma.generated.valuedomains.impl.JsonObjectImpl;
 import learnedma.generated.valuedomains.impl.NameImpl;
-import learnedma.generated.valuedomains.impl.NumberImpl;
 import org.abstractica.edma.valuedomains.IMetaValueDomain;
 import org.abstractica.edma.valuedomains.IValueInstance;
 import org.abstractica.edma.valuedomains.exceptions.InvalidValueException;
 
 /**
- * The implementation of Course
+ * The implementation of Member
  */
-public class CourseImpl extends Course implements IValueInstance
+public class MemberImpl extends Member implements IValueInstance
 {
     private int edma_hash;
     private Object[] value;
@@ -45,7 +45,7 @@ public class CourseImpl extends Course implements IValueInstance
      * Constructor
      * @param o  The Object that represents this struct value
      */
-    public CourseImpl(Object o)
+    public MemberImpl(Object o)
     {
         edma_hash = 0;
         value = (Object[]) o;
@@ -78,7 +78,7 @@ public class CourseImpl extends Course implements IValueInstance
     {
         if(!(o instanceof IValueInstance)) return false;
         IValueInstance inst = (IValueInstance) o;
-        if(11 != inst.edma_getDomain().getIndex()) return false;
+        if(10 != inst.edma_getDomain().getIndex()) return false;
         return edma_domain.valueEqual(value, inst.edma_getValue());
     }
 
@@ -102,15 +102,15 @@ public class CourseImpl extends Course implements IValueInstance
     }
 
     /**
-     * Compare this Course to another Course
-     * @param course  The Course to compare with
+     * Compare this Member to another Member
+     * @param member  The Member to compare with
      * @return        A negative integer, zero, or a positive integer as this
-     *                Course is less than, equal to, or greater than the
-     *                specified Course
+     *                Member is less than, equal to, or greater than the
+     *                specified Member
      */
-    public int compareTo(Course course)
+    public int compareTo(Member member)
     {
-        return edma_domain.valueCompare(value, ((CourseImpl) course).value);
+        return edma_domain.valueCompare(value, ((MemberImpl) member).value);
     }
 
     /**
@@ -123,29 +123,20 @@ public class CourseImpl extends Course implements IValueInstance
     }
 
     /**
-     * returns the value of the field id
-     * @return  The value of the field id
-     */
-    public Number id()
-    {
-        return new NumberImpl(value[0]);
-    }
-
-    /**
      * returns the value of the field name
      * @return  The value of the field name
      */
     public Name name()
     {
-        return new NameImpl(value[1]);
+        return new NameImpl(value[0]);
     }
 
     /**
-     * returns the value of the field etcs
-     * @return  The value of the field etcs
+     * returns the value of the field value
+     * @return  The value of the field value
      */
-    public Number etcs()
+    public JsonObject value()
     {
-        return new NumberImpl(value[2]);
+        return new JsonObjectImpl(value[1]);
     }
 }
